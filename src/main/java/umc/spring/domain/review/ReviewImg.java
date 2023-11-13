@@ -3,10 +3,7 @@ package umc.spring.domain.review;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -19,4 +16,8 @@ public class ReviewImg extends BaseEntity {
     private Long id;
 
     private String imgUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "REVIEW_ID")
+    private Review review;
 }

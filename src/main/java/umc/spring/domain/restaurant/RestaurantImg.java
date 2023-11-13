@@ -3,10 +3,7 @@ package umc.spring.domain.restaurant;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,4 +19,8 @@ public class RestaurantImg extends BaseEntity {
     private String imgUrl;
 
     private Integer order;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RESTAURANT_ID")
+    private Restaurant restaurant;
 }

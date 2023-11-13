@@ -1,12 +1,11 @@
 package umc.spring.domain.review;
 
 import lombok.*;
+import umc.spring.domain.User;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.domain.restaurant.Restaurant;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,4 +21,12 @@ public class Review extends BaseEntity {
     private float score;
 
     private String contents;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RESTAURANT_ID")
+    private Restaurant restaurant;
 }

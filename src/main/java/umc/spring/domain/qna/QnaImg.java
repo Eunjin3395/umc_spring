@@ -3,10 +3,7 @@ package umc.spring.domain.qna;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -20,4 +17,8 @@ public class QnaImg extends BaseEntity {
     private Long id;
 
     private String imgUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "QNA_ID")
+    private Qna qna;
 }

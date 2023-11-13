@@ -1,12 +1,11 @@
 package umc.spring.domain.restaurant;
 
 import lombok.*;
+import umc.spring.domain.Address;
+import umc.spring.domain.FoodCategory;
 import umc.spring.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -24,4 +23,18 @@ public class Restaurant extends BaseEntity {
     private String specAddress;
 
     private Float score;
+
+    // 연관관계 매핑
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FOOD_ID")
+    private FoodCategory foodCategory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ADDRESS_ID")
+    private Address address;
+
+    // 연관관계 설정
+    public void setFoodCategory(FoodCategory foodCategory) {
+        this.foodCategory = foodCategory;
+    }
 }

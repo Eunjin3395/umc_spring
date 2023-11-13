@@ -21,5 +21,4 @@ public class AlarmType extends BaseEntity {
 
     private String alarmTitle;
 
-    private String alarmUrl;
 }
