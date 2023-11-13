@@ -2,10 +2,12 @@ package umc.spring.domain;
 
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.domain.mapping.UserMission;
 import umc.spring.domain.restaurant.Restaurant;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,4 +32,7 @@ public class Mission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RESTAURANT_ID")
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    private List<UserMission> userMissionList = new ArrayList<UserMission>();
 }

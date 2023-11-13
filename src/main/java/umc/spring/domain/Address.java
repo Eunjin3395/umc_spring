@@ -2,11 +2,11 @@ package umc.spring.domain;
 
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.domain.restaurant.Restaurant;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,4 +20,7 @@ public class Address extends BaseEntity {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    private List<Restaurant> restaurantList = new ArrayList<Restaurant>();
 }
