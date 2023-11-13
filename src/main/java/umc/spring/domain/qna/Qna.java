@@ -1,7 +1,7 @@
 package umc.spring.domain.qna;
 
 import lombok.*;
-import umc.spring.domain.User;
+import umc.spring.domain.Member;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.QnaStatus;
 
@@ -26,8 +26,8 @@ public class Qna extends BaseEntity {
     private String contents;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TYPE_ID")

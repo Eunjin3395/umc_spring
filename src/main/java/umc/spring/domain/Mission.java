@@ -2,7 +2,7 @@ package umc.spring.domain;
 
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
-import umc.spring.domain.mapping.UserMission;
+import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.restaurant.Restaurant;
 
 import javax.persistence.*;
@@ -34,5 +34,5 @@ public class Mission extends BaseEntity {
     private Restaurant restaurant;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<UserMission> userMissionList = new ArrayList<UserMission>();
+    private List<MemberMission> memberMissionList = new ArrayList<MemberMission>();
 }

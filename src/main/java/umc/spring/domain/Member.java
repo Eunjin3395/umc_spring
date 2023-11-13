@@ -4,7 +4,7 @@ import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.SocialType;
-import umc.spring.domain.enums.UserStatus;
+import umc.spring.domain.enums.MemberStatus;
 import umc.spring.domain.mapping.*;
 import umc.spring.domain.qna.Qna;
 import umc.spring.domain.review.Review;
@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class User extends BaseEntity {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +54,7 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
-    private UserStatus userStatus;
+    private MemberStatus memberStatus;
 
     private LocalDate inactiveDate;
 
@@ -62,24 +62,24 @@ public class User extends BaseEntity {
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserTerm> userTermList = new ArrayList<UserTerm>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberTerm> userTermList = new ArrayList<MemberTerm>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserMission> userMissionList = new ArrayList<UserMission>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<MemberMission>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserFavor> userFavorList = new ArrayList<UserFavor>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberFavor> memberFavorList = new ArrayList<MemberFavor>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<Review>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Qna> qnaList = new ArrayList<Qna>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserAlarmSetting> alarmSettingList = new ArrayList<UserAlarmSetting>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberAlarmSetting> alarmSettingList = new ArrayList<MemberAlarmSetting>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserAlarm> alarmList = new ArrayList<UserAlarm>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberAlarm> alarmList = new ArrayList<MemberAlarm>();
 }

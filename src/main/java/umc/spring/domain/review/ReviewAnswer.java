@@ -1,7 +1,7 @@
 package umc.spring.domain.review;
 
 import lombok.*;
-import umc.spring.domain.User;
+import umc.spring.domain.Member;
 import umc.spring.domain.common.BaseEntity;
 
 import javax.persistence.*;
@@ -23,6 +23,6 @@ public class ReviewAnswer extends BaseEntity {
     private Review review;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="USER_ID")
-    private User user;
+    @JoinColumn(name="MEMBER_ID")
+    private Member member;
 }

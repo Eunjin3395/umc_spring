@@ -2,7 +2,7 @@ package umc.spring.domain;
 
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
-import umc.spring.domain.mapping.UserTerm;
+import umc.spring.domain.mapping.MemberTerm;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,5 +26,5 @@ public class Term extends BaseEntity {
     private String description;
 
     @OneToMany(mappedBy = "term", cascade = CascadeType.ALL)
-    private List<UserTerm> userTermList = new ArrayList<UserTerm>();
+    private List<MemberTerm> memberTermList = new ArrayList<MemberTerm>();
 }
