@@ -23,30 +23,37 @@ public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
     private Long id;
 
+    @Column(nullable = false, length=15)
     private String nickname;
 
+    @Column(nullable = false,length = 50)
     private String email;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(10)")
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15)")
     private SocialType socialType;
 
     private Integer point;
 
     private LocalDate birth;
 
+    @Column(nullable = false,length = 50)
     private String specAddress;
 
+    @Column(nullable = false,length = 15)
     private String phone;
 
+    @Column(nullable = false, columnDefinition = "DEFAULT 0")
     private boolean phoneAuth;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private UserStatus userStatus;
 
     private LocalDate inactiveDate;
