@@ -17,7 +17,6 @@ import java.time.LocalDate;
 public class UserMission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USERMISSION_ID")
     private Long id;
 
     @Enumerated(EnumType.STRING)

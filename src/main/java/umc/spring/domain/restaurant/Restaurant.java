@@ -33,8 +33,4 @@ public class Restaurant extends BaseEntity {
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
 
-    // 연관관계 설정
-    public void setFoodCategory(FoodCategory foodCategory) {
-        this.foodCategory = foodCategory;
-    }
 }

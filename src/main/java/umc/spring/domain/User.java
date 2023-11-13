@@ -49,9 +49,6 @@ public class User extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    @OneToMany(mappedBy="user")
-    private List<UserMission> userMissions = new ArrayList<UserMission>();
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="ADDRESS_ID")
     private Address address;
