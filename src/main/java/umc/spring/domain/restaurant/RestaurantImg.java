@@ -16,9 +16,10 @@ public class RestaurantImg extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false,columnDefinition = "TEXT")
     private String imgUrl;
 
-    private Integer order;
+    private Integer orderNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RESTAURANT_ID")

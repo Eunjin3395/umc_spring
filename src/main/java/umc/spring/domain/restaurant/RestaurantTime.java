@@ -5,6 +5,7 @@ import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Day;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -19,13 +20,12 @@ public class RestaurantTime extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(5)")
     private Day day;
 
-    @Temporal(TemporalType.TIME)
-    private Date openTime;
+    private LocalTime openTime;
 
-    @Temporal(TemporalType.TIME)
-    private Date closeTime;
+    private LocalTime closeTime;
 
 //    @Embedded
 //    private OpeningHours openingHours;

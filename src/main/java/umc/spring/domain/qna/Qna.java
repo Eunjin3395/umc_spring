@@ -19,10 +19,13 @@ public class Qna extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15)")
     private QnaStatus status;
 
+    @Column(nullable = false,length = 50)
     private String title;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String contents;
 
     @ManyToOne(fetch = FetchType.LAZY)

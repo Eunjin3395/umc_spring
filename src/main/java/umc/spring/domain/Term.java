@@ -19,10 +19,13 @@ public class Term extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length=70)
     private String title;
 
-    private boolean isOptional;
+    @Column(nullable = false)
+    private Boolean isOptional;
 
+    @Column(nullable = false, length=255)
     private String description;
 
     @OneToMany(mappedBy = "term", cascade = CascadeType.ALL)

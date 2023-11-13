@@ -17,11 +17,13 @@ public class MemberAlarm extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 30)
     private String title;
 
+    @Column(nullable = false, length = 200)
     private String body;
 
-    private boolean isConfirmed;
+    private Boolean isConfirmed;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")

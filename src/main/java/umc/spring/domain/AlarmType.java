@@ -3,10 +3,7 @@ package umc.spring.domain;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -19,6 +16,7 @@ public class AlarmType extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length=20)
     private String alarmTitle;
 
 }

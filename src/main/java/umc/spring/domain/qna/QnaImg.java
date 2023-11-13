@@ -16,6 +16,7 @@ public class QnaImg extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String imgUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)

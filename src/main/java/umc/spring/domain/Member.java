@@ -39,6 +39,7 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(15)")
     private SocialType socialType;
 
+    @Column(nullable = false)
     private Integer point;
 
     private LocalDate birth;
@@ -49,8 +50,8 @@ public class Member extends BaseEntity {
     @Column(nullable = false,length = 15)
     private String phone;
 
-    @Column(nullable = false, columnDefinition = "DEFAULT 0")
-    private boolean phoneAuth;
+    @Column(columnDefinition = "BOOLEAN DEFAULT false")
+    private Boolean phoneAuth;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")

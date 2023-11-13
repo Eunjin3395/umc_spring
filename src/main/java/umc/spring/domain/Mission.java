@@ -21,10 +21,13 @@ public class Mission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Integer amount;
 
+    @Column(nullable = false)
     private Integer point;
 
+    @Column(nullable = false, length=255)
     private String description;
 
     private LocalDate dueDate;
