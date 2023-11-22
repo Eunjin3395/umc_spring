@@ -9,9 +9,8 @@ import umc.spring.apiPayload.code.ReasonDTO;
 @Getter
 @AllArgsConstructor
 public enum SuccessStatus implements BaseCode {
-
-    // 일반 응답
-    _OK(HttpStatus.OK, "COMMON200", "성공입니다.");
+    _OK(HttpStatus.OK, "COMMON200", "성공입니다,"),
+    ;
 
     private final HttpStatus httpStatus;
     private final String code;
@@ -20,18 +19,19 @@ public enum SuccessStatus implements BaseCode {
     @Override
     public ReasonDTO getReason() {
         return ReasonDTO.builder()
+                .isSuccess(true)
                 .code(code)
                 .message(message)
-                .isSuccess(true).build();
+                .build();
     }
 
     @Override
-    public ReasonDTO getReasonHttpStatus() {
+    public ReasonDTO getReasonStatus() {
         return ReasonDTO.builder()
                 .httpStatus(httpStatus)
+                .isSuccess(true)
                 .code(code)
                 .message(message)
-                .isSuccess(true)
                 .build();
     }
 }

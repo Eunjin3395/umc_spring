@@ -6,20 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 public class TempResponse {
-
-    @Builder
     @Getter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class TempTestDTO{
+    public static class TempTestDto {
         String testString;
     }
 
-    @Builder
     @Getter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class TempExceptionDTO{
+    public static class TempExceptionDto{
         Integer flag;
     }
+
 }

@@ -1,6 +1,7 @@
 package umc.spring.apiPayload.code;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
@@ -10,8 +11,4 @@ public class ReasonDTO {
     private final boolean isSuccess;
     private final String code;
     private final String message;
-
-    public boolean getIsSuccess() {
-        return isSuccess;
-    }
 }
