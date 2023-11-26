@@ -1,6 +1,8 @@
 package umc.spring.domain.restaurant;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.Address;
 import umc.spring.domain.FoodCategory;
 import umc.spring.domain.common.BaseEntity;
@@ -9,6 +11,8 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -34,5 +38,18 @@ public class Restaurant extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
+
+    // 연관관계 편의 메소드
+    public void setAddress(Address address) {
+        if (this.address != null) {
+            this.address.getRestaurantList().remove(this);
+        }
+        this.address =address;
+        address.getRestaurantList().add(this);
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory) {
+        this.foodCategory=foodCategory;
+    }
 
 }
