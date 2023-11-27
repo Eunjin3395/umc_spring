@@ -1,12 +1,10 @@
-package umc.spring.service.FoodCategoryService;
+package umc.spring.service.ServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.spring.domain.FoodCategory;
 import umc.spring.repository.FoodCategoryRepository;
-
-import java.util.Optional;
+import umc.spring.service.FoodCategoryService;
 
 @Service
 @RequiredArgsConstructor
