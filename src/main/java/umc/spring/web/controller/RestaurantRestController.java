@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.converter.RestaurantConverter;
 import umc.spring.converter.ReviewConverter;
+import umc.spring.domain.Mission;
 import umc.spring.domain.restaurant.Restaurant;
 import umc.spring.domain.review.Review;
 import umc.spring.service.RestaurantCommandService;
@@ -40,5 +41,14 @@ public class RestaurantRestController {
             @RequestBody @Valid ReviewRequestDTO.addDto request) {
         Review review = reviewCommandService.addReview(request, restaurantId);
         return ApiResponse.onSuccess(ReviewConverter.toAddResultDTO(review));
+    }
+
+    @PostMapping("/{restaurantId}/missions")
+    public ApiResponse<RestaurantResponseDTO.AddMissionResultDto> addMission(
+            @PathVariable @ExistRestaurant Long restaurantId,
+            @RequestBody @Valid RestaurantRequestDTO.AddMissionDto request
+    ){
+        Mission mission = restaurantCommandService.addMission(request, restaurantId);
+        return ApiResponse.onSuccess(RestaurantConverter.toAddMissionResultDTO(mission));
     }
 }

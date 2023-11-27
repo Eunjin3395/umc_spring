@@ -37,5 +37,15 @@ public class Mission extends BaseEntity {
     private Restaurant restaurant;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<MemberMission>();
+    private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    // 연관관계 편의 메소드
+    public void setRestaurant(Restaurant restaurant) {
+        if (this.restaurant != null) {
+            this.restaurant.getMissionList().remove(this);
+        }
+        this.restaurant=restaurant;
+        restaurant.getMissionList().add(this);
+    }
+
 }
