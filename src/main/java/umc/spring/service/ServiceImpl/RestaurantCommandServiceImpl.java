@@ -28,12 +28,14 @@ public class RestaurantCommandServiceImpl implements RestaurantCommandService {
     @Transactional
     public Restaurant addRestaurant(RestaurantRequestDTO.AddDto request) {
 
-        Restaurant newRestaurant = RestaurantConverter.toRestaurant(request);
-        Address resAddress = addressRepository.findById(request.getAddressId()).orElseThrow(()-> new AddressHandler(ErrorStatus.ADDRESS_NOT_FOUND));
-        FoodCategory resFoodCategory = foodCategoryRepository.findById(request.getFoodId()).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
+        FoodCategory foodCategory = foodCategoryRepository.findById(request.getFoodId()).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
 
-        newRestaurant.setAddress(resAddress);
-        newRestaurant.setFoodCategory(resFoodCategory);
+        //단방향인 foodCategory는 컨버터에서 설정
+        Restaurant newRestaurant = RestaurantConverter.toRestaurant(request,foodCategory);
+
+        // 양방향인 address는 여기서 설정
+        Address address = addressRepository.findById(request.getAddressId()).orElseThrow(()-> new AddressHandler(ErrorStatus.ADDRESS_NOT_FOUND));
+        newRestaurant.setAddress(address);
 
         return restaurantRepository.save(newRestaurant);
     }
