@@ -17,4 +17,13 @@ public class RestaurantResponseDTO {
         Long restaurantId;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AddMissionResultDto{
+        Long missionId;
+        LocalDateTime createdAt;
+    }
 }

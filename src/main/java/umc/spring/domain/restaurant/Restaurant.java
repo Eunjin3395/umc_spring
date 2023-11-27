@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.Address;
 import umc.spring.domain.FoodCategory;
+import umc.spring.domain.Mission;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.review.Review;
 
@@ -44,6 +45,10 @@ public class Restaurant extends BaseEntity {
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>();
+
 
     // 연관관계 편의 메소드
     public void setAddress(Address address) {
