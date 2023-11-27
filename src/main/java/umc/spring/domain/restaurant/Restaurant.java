@@ -6,8 +6,11 @@ import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.Address;
 import umc.spring.domain.FoodCategory;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.domain.review.Review;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -39,12 +42,15 @@ public class Restaurant extends BaseEntity {
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
 
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
+
     // 연관관계 편의 메소드
     public void setAddress(Address address) {
         if (this.address != null) {
             this.address.getRestaurantList().remove(this);
         }
-        this.address =address;
+        this.address = address;
         address.getRestaurantList().add(this);
     }
 

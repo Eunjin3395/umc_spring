@@ -1,4 +1,4 @@
-package umc.spring.service.FoodCategoryService;
+package umc.spring.service;
 
 import umc.spring.domain.FoodCategory;
 
