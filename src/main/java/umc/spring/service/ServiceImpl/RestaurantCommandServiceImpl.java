@@ -1,4 +1,4 @@
-package umc.spring.service.RestaurantService;
+package umc.spring.service.ServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.AddressHandler;
 import umc.spring.apiPayload.exception.handler.FoodCategoryHandler;
-import umc.spring.apiPayload.exception.handler.RestaurantHandler;
 import umc.spring.converter.RestaurantConverter;
 import umc.spring.domain.Address;
 import umc.spring.domain.FoodCategory;
@@ -14,12 +13,13 @@ import umc.spring.domain.restaurant.Restaurant;
 import umc.spring.repository.AddressRepository;
 import umc.spring.repository.FoodCategoryRepository;
 import umc.spring.repository.RestaurantRepository;
+import umc.spring.service.RestaurantCommandService;
 import umc.spring.web.dto.RestaurantRequestDTO;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class RestaurantCommandServiceImpl implements RestaurantCommandService{
+public class RestaurantCommandServiceImpl implements RestaurantCommandService {
     private final RestaurantRepository restaurantRepository;
     private final AddressRepository addressRepository;
     private final FoodCategoryRepository foodCategoryRepository;
