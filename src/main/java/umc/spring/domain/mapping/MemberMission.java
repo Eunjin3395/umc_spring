@@ -30,4 +30,20 @@ public class MemberMission extends BaseEntity {
     @JoinColumn(name = "MISSION_ID")
     private Mission mission;
 
+    // 연관관계 편의 메소드
+    public void setMember(Member member) {
+        if (this.member != null) {
+            this.member.getMemberMissionList().remove(this);
+        }
+        this.member=member;
+        member.getMemberMissionList().add(this);
+    }
+
+    public void setMission(Mission mission) {
+        if (this.mission != null) {
+            this.mission.getMemberMissionList().remove(this);
+        }
+        this.mission=mission;
+        mission.getMemberMissionList().add(this);
+    }
 }

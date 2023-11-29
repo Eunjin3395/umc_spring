@@ -2,6 +2,8 @@ package umc.spring.web.dto;
 
 import lombok.Getter;
 import umc.spring.validation.annotation.ExistCategories;
+import umc.spring.validation.annotation.ExistMember;
+import umc.spring.validation.annotation.ExistMission;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,5 +32,15 @@ public class MemberRequestDTO {
         String phone;
         @ExistCategories
         List<Long> favorCategory;
+    }
+
+    @Getter
+    public static class startMissionDto{
+        @NotNull
+        @ExistMission
+        Long missionId;
+        @NotNull
+        @ExistMember
+        Long memberId;
     }
 }

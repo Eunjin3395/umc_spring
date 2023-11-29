@@ -22,6 +22,10 @@ public enum ErrorStatus implements BaseErrorCode {
     // 게시글 관련 오류
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글을 찾을 수 없습니다."),
 
+    // 미션 관련 오류
+    MISSION_ALREADY_STARTED(HttpStatus.BAD_REQUEST,"MISSION4001","이미 진행중인 미션입니다"),
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND,"MISSION4002","미션 정보를 찾을 수 없습니다"),
+
     // 음식 카테고리 관련 오류
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND,"FOOD4001","음식 카테고리를 찾을 수 없습니다."),
 
