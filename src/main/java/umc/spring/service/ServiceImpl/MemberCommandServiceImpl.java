@@ -20,14 +20,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class MemberCommandServiceImpl implements MemberCommandService {
 
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
 
     @Override
-    @Transactional
     public Member joinMember(MemberRequestDTO.JoinDto request) {
 
         // request DTO를 Member 엔티티로 변환하기
