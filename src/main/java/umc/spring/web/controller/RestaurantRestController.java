@@ -89,7 +89,7 @@ public class RestaurantRestController {
             @Parameter(name = "page", description = "페이지 번호, query string 입니다.")
     })
     public ApiResponse<RestaurantResponseDTO.MissionPreViewListDTO> getMissionList(
-            @PathVariable(name = "restaurantId") Long restaurantId,
+            @PathVariable(name = "restaurantId") @ExistRestaurant Long restaurantId,
             @RequestParam(name = "page") Integer page) {
         Page<Mission> missionList = restaurantQueryService.getMissionList(restaurantId, page);
         return ApiResponse.onSuccess(RestaurantConverter.toMissionPreViewListDTO(missionList));

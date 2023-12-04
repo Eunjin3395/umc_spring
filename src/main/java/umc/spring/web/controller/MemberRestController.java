@@ -63,10 +63,10 @@ public class MemberRestController {
     })
     @Parameters({
             @Parameter(name = "memberId", description = "회원의 아이디 번호, query string 입니다."),
-            @Parameter(name = "page", description = "페이지 번호, query string 입니다.")
+            @Parameter(name = "page", description = "페이지 번호, 1 이상의 숫자를 입려해주세요.")
     })
     public ApiResponse<ReviewResponseDTO.MyReviewPreViewListDTO> getMyReviewList(
-            @RequestParam(name = "memberId") Long memberId,
+            @RequestParam(name = "memberId") @ExistMember Long memberId,
             @RequestParam(name = "page") Integer page
     ) {
         Page<Review> reviewList = memberQueryService.getReviewList(memberId, page);
@@ -84,7 +84,7 @@ public class MemberRestController {
             @Parameter(name = "page", description = "페이지 번호, query string 입니다.")
     })
     public ApiResponse<MemberResponseDTO.memberMissionPreViewListDTO> getMissionList(
-            @RequestParam(name = "memberId") Long memberId,
+            @RequestParam(name = "memberId") @ExistMember Long memberId,
             @RequestParam(name="status") String status,
             @RequestParam(name="page") Integer page
     ){
