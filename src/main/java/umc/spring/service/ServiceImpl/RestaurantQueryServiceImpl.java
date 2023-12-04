@@ -5,8 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring.domain.Mission;
 import umc.spring.domain.restaurant.Restaurant;
 import umc.spring.domain.review.Review;
+import umc.spring.repository.MissionRepository;
 import umc.spring.repository.RestaurantRepository;
 import umc.spring.repository.ReviewRepository;
 import umc.spring.service.RestaurantQueryService;
@@ -19,6 +21,8 @@ import java.util.Optional;
 public class RestaurantQueryServiceImpl implements RestaurantQueryService {
     private final RestaurantRepository restaurantRepository;
     private final ReviewRepository reviewRepository;
+    private final MissionRepository missionRepository;
+
     @Override
     public boolean isExistRestaurant(Long id) {
         return restaurantRepository.existsById(id);
@@ -34,6 +38,14 @@ public class RestaurantQueryServiceImpl implements RestaurantQueryService {
         Restaurant restaurant = restaurantRepository.findById(restaurantId).get();
 
         Page<Review> RestaurantPage = reviewRepository.findAllByRestaurant(restaurant, PageRequest.of(page,10));
+        return RestaurantPage;
+    }
+
+    @Override
+    public Page<Mission> getMissionList(Long restaurantId, Integer page) {
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).get();
+
+        Page<Mission> RestaurantPage = missionRepository.findAllByRestaurant(restaurant, PageRequest.of(page, 10));
         return RestaurantPage;
     }
 }
