@@ -72,10 +72,27 @@ public class RestaurantRestController {
     })
     @Parameters({
             @Parameter(name = "restaurantId", description = "음식점의 아이디, path variable 입니다."),
-            @Parameter(name="page",description = "페이지 번호, 0번이 페이지 1 입니다.")
+            @Parameter(name = "page", description = "페이지 번호, 0번이 페이지 1 입니다.")
     })
-    public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId,@RequestParam(name="page") Integer page) {
+    public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId, @RequestParam(name = "page") Integer page) {
         Page<Review> reviewList = restaurantQueryService.getReviewList(restaurantId, page);
         return ApiResponse.onSuccess(ReviewConverter.toReviewPreViewListDTO(reviewList));
     }
+
+    @GetMapping("/{restaurantId}/missions")
+    @Operation(summary = "특정 음식점의 미션 목록 조회 API", description = "특정 음식점의 미션들의 목록을 조회하는 API, 페이징을 포함함. query String으로 page 번호를 주세요.")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+            })
+    @Parameters({
+            @Parameter(name = "restaurantId", description = "음식점의 아이디, path variable 입니다."),
+            @Parameter(name = "page", description = "페이지 번호, query string 입니다.")
+    })
+    public ApiResponse<RestaurantResponseDTO.MissionPreViewListDTO> getMissionList(
+            @PathVariable(name = "restaurantId") Long restaurantId,
+            @RequestParam(name = "page") Integer page) {
+        Page<Mission> missionList = restaurantQueryService.getMissionList(restaurantId, page);
+        return ApiResponse.onSuccess(RestaurantConverter.toMissionPreViewListDTO(missionList));
+    }
+
 }
