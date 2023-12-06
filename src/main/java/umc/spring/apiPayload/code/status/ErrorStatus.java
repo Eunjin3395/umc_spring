@@ -37,6 +37,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 주소 관련 오류
     ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND,"ADDRESS4001","주소 정보를 찾을 수 없습니다."),
 
+    // 페이징 관련 오류
+    PAGE_NEGATIVE_INPUT(HttpStatus.BAD_REQUEST, "PAGE4001", "페이지 번호는 1이상의 숫자여야 합니다."),
+
     // 테스트용 오류
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "테스트용 에러입니다."),
     ;
