@@ -19,6 +19,7 @@ import umc.spring.domain.review.Review;
 import umc.spring.service.RestaurantCommandService;
 import umc.spring.service.RestaurantQueryService;
 import umc.spring.service.ReviewCommandService;
+import umc.spring.validation.annotation.CheckPage;
 import umc.spring.validation.annotation.ExistMember;
 import umc.spring.validation.annotation.ExistRestaurant;
 import umc.spring.web.dto.RestaurantRequestDTO;
@@ -72,10 +73,10 @@ public class RestaurantRestController {
     })
     @Parameters({
             @Parameter(name = "restaurantId", description = "음식점의 아이디, path variable 입니다."),
-            @Parameter(name = "page", description = "페이지 번호, 0번이 페이지 1 입니다.")
+            @Parameter(name = "page", description = "페이지 번호, 1 이상의 숫자를 입력하세요.")
     })
-    public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId, @RequestParam(name = "page") Integer page) {
-        Page<Review> reviewList = restaurantQueryService.getReviewList(restaurantId, page);
+    public ApiResponse<ReviewResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistRestaurant @PathVariable(name = "restaurantId") Long restaurantId, @RequestParam(name = "page") @CheckPage Integer page) {
+        Page<Review> reviewList = restaurantQueryService.getReviewList(restaurantId, page-1);
         return ApiResponse.onSuccess(ReviewConverter.toReviewPreViewListDTO(reviewList));
     }
 
@@ -86,12 +87,12 @@ public class RestaurantRestController {
             })
     @Parameters({
             @Parameter(name = "restaurantId", description = "음식점의 아이디, path variable 입니다."),
-            @Parameter(name = "page", description = "페이지 번호, query string 입니다.")
+            @Parameter(name = "page", description = "페이지 번호, 1 이상의 숫자를 입력하세요.")
     })
     public ApiResponse<RestaurantResponseDTO.MissionPreViewListDTO> getMissionList(
             @PathVariable(name = "restaurantId") @ExistRestaurant Long restaurantId,
-            @RequestParam(name = "page") Integer page) {
-        Page<Mission> missionList = restaurantQueryService.getMissionList(restaurantId, page);
+            @RequestParam(name = "page") @CheckPage Integer page) {
+        Page<Mission> missionList = restaurantQueryService.getMissionList(restaurantId, page-1);
         return ApiResponse.onSuccess(RestaurantConverter.toMissionPreViewListDTO(missionList));
     }
 
